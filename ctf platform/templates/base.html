@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}CipherLab CTF{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><nav class="nav"><a class="brand" href="{{ url_for('index') }}"><span class="brand-icon">⌘</span> CipherLab<span class="muted">/CTF</span></a>
+<div class="navlinks"><a href="{{ url_for('challenges') }}">Challenges</a><a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+{% if g.user %}<a href="{{ url_for('dashboard') }}">Dashboard</a><span class="user-pill">{{ g.user.username }}</span><form method="post" action="{{ url_for('logout') }}"><button class="navlogout">Log out</button></form>{% else %}<a href="{{ url_for('login') }}">Sign in</a><a class="nav-cta" href="{{ url_for('register') }}">Join lab ↗</a>{% endif %}</div></nav>
+<main class="page">{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flashes">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer><span>◈ CIPHERLAB CTF</span><span>Practice ethically. Learn relentlessly.</span><span>LOCAL TRAINING ENVIRONMENT</span></footer></body></html>
